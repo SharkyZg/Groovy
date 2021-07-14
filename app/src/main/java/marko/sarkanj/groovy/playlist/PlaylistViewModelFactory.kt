@@ -1,4 +1,4 @@
-package marko.sarkanj.groovy
+package marko.sarkanj.groovy.playlist
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

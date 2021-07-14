@@ -1,4 +1,4 @@
-package marko.sarkanj.groovy
+package marko.sarkanj.groovy.playlist
 
 import kotlinx.coroutines.flow.Flow
 
@@ -7,4 +7,3 @@ class PlaylistRepository() {
         TODO("Not yet implemented")
         }
     }
-

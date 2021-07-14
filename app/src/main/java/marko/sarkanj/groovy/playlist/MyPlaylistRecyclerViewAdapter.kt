@@ -1,4 +1,4 @@
-package marko.sarkanj.groovy
+package marko.sarkanj.groovy.playlist
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import marko.sarkanj.groovy.R
 
 class MyPlaylistRecyclerViewAdapter(
         private val values: List<Playlist>)

@@ -2,6 +2,7 @@ package marko.sarkanj.groovy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import marko.sarkanj.groovy.playlist.PlaylistFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
