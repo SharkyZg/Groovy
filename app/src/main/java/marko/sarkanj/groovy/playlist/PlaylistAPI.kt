@@ -1,10 +1,10 @@
 package marko.sarkanj.groovy.playlist
 
 import kotlinx.coroutines.flow.Flow
+import retrofit2.http.GET
 
-class PlaylistAPI {
-    suspend fun fetchAllPlaylists() : List<Playlist> {
-        TODO("Not yet implemented")
-    }
+interface PlaylistAPI {
 
+    @GET("playlists")
+    suspend fun fetchAllPlaylists() : List<Playlist>
 }

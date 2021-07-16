@@ -12,10 +12,7 @@ class PlaylistService(
 
         return flow {
             emit(Result.success(playlistAPI.fetchAllPlaylists()))
-        }.catch {
-            emit(Result.failure(RuntimeException("Something went wrong")))
         }
-        playlistAPI.fetchAllPlaylists()
     }
 
 }

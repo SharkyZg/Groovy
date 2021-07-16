@@ -1,4 +1,4 @@
-package marko.sarkanj.groovy
+package petros.efthymiou.groovy
 
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +10,8 @@ import androidx.test.rule.ActivityTestRule
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
 import com.schibsted.spain.barista.internal.matcher.DrawableMatcher.Companion.withDrawable
+import marko.sarkanj.groovy.MainActivity
+import marko.sarkanj.groovy.R
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -18,13 +20,12 @@ import org.hamcrest.TypeSafeMatcher
 import org.junit.Test
 import org.junit.runner.RunWith
 
-import org.junit.Assert.*
 import org.junit.Rule
 
 @RunWith(AndroidJUnit4::class)
 class PlaylistFeature {
 
-    val myActivityRule = ActivityTestRule(MainActivity::class.java)
+    val mActivityRule = ActivityTestRule(MainActivity::class.java)
         @Rule get
 
     @Test
@@ -32,8 +33,9 @@ class PlaylistFeature {
         assertDisplayed("Playlists")
     }
 
+
     @Test
-    fun diplaysListOfPlayLists() {
+    fun displaysListOfPlaylists() {
         Thread.sleep(4000)
 
         assertRecyclerViewItemCount(R.id.playlists_list, 10)
@@ -50,6 +52,9 @@ class PlaylistFeature {
             .check(matches(withDrawable(R.mipmap.playlist)))
             .check(matches(isDisplayed()))
     }
+
+
+
 
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {

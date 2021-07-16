@@ -10,14 +10,24 @@ import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import marko.sarkanj.groovy.R
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class PlaylistFragment : Fragment() {
 
     lateinit var viewModel: PlaylistViewModel
     lateinit var viewModelFactory: PlaylistViewModelFactory
 
-    private val playlistAPI = PlaylistAPI()
-    private val service = PlaylistService(playlistAPI)
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("http://10.0.2.2:3000/")
+        .client(OkHttpClient())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    private val api = retrofit.create(PlaylistAPI::class.java)
+
+    private val service = PlaylistService(api)
     private val repository = PlaylistRepository(service)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +40,7 @@ class PlaylistFragment : Fragment() {
             if(playlists.getOrNull() !=null)
                 setupList(view, playlists.getOrNull()!!)
             else {
-                //TODO
+                throw Exception("No playlists !!")
             }
         })
 
