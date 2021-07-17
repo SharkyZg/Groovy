@@ -40,20 +40,5 @@ class PlaylistServiceShould {
             whenever(playlistAPI.fetchAllPlaylists()).thenReturn(playlists)
             service = PlaylistService(playlistAPI)
         }
-
-        @Test
-        fun emitsErrorResultWhenNetworkFails() = runBlockingTest {
-            mockErrorCase()
-
-            assertEquals("Something went wrong", service.fetchPlaylists().first()
-                .exceptionOrNull()?.message)
-        }
-
-        private suspend fun mockErrorCase() {
-            whenever(playlistAPI.fetchAllPlaylists())
-                .thenThrow(RuntimeException("Backend exception"))
-
-            service = PlaylistService(playlistAPI)
-        }
     }
 }

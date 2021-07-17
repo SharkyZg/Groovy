@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import marko.sarkanj.groovy.utils.BaseUnitTest
+import marko.sarkanj.groovy.utils.captureValues
 import org.junit.Test
 import marko.sarkanj.groovy.utils.getValueForTest
 import java.lang.RuntimeException
@@ -37,17 +38,14 @@ class PlaylistViewModelShould : BaseUnitTest() {
     }
 
     @Test
-    fun emitErrorWhenReceiveError() {
-        runBlocking {
-            whenever(repository.getPlaylists()).thenReturn(
-                flow {
-                    emit(Result.failure<List<Playlist>>(exception))
-                }
-            )
-        }
-        val viewModel = PlaylistViewModel(repository)
+    fun showSpinnerWhileLoading() = runBlockingTest {
+        val viewModel = mockSuccessfulCase()
 
-        assertEquals(exception, viewModel.playlists.getValueForTest()!!.exceptionOrNull())
+        viewModel.loader.captureValues {
+            viewModel.playlists.getValueForTest()
+
+            assertEquals(true, values[0])
+        }
     }
 
     private fun mockSuccessfulCase(): PlaylistViewModel {
@@ -60,4 +58,25 @@ class PlaylistViewModelShould : BaseUnitTest() {
         }
         return PlaylistViewModel(repository)
     }
+
+    @Test
+    fun emitErrorWhenReceiveError() {
+        val viewModel = mockErrorCase()
+
+        assertEquals(exception, viewModel.playlists.getValueForTest()!!.exceptionOrNull())
+    }
+
+    private fun mockErrorCase(): PlaylistViewModel {
+        runBlocking {
+            whenever(repository.getPlaylists()).thenReturn(
+                flow {
+                    emit(Result.failure<List<Playlist>>(exception))
+                }
+            )
+        }
+        val viewModel = PlaylistViewModel(repository)
+        return viewModel
+    }
+
+
 }

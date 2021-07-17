@@ -53,7 +53,10 @@ class PlaylistFeature {
             .check(matches(isDisplayed()))
     }
 
-
+    @Test
+    fun displaysLoaderWhileFetchingThePlaylists() {
+        assertDisplayed(R.id.loader)
+    }
 
 
     fun nthChildOf(parentMatcher: Matcher<View>, childPosition: Int): Matcher<View> {
