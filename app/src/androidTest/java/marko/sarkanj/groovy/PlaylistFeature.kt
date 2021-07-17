@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import com.schibsted.spain.barista.assertion.BaristaRecyclerViewAssertions.assertRecyclerViewItemCount
 import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertDisplayed
+import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions.assertNotDisplayed
 import com.schibsted.spain.barista.internal.matcher.DrawableMatcher.Companion.withDrawable
 import marko.sarkanj.groovy.MainActivity
 import marko.sarkanj.groovy.R
@@ -56,6 +57,13 @@ class PlaylistFeature {
     @Test
     fun displaysLoaderWhileFetchingThePlaylists() {
         assertDisplayed(R.id.loader)
+    }
+
+    @Test
+    fun hidesLoader() {
+        Thread.sleep(4000)
+
+        assertNotDisplayed(R.id.loader)
     }
 
 

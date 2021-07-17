@@ -2,6 +2,7 @@ package marko.sarkanj.groovy.playlist
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class PlaylistViewModel(
@@ -13,6 +14,9 @@ class PlaylistViewModel(
     val playlists = liveData<Result<List<Playlist>>> {
         loader.postValue(true)
 
-        emitSource(repository.getPlaylists().asLiveData())
+        emitSource(repository.getPlaylists()
+        .onEach {
+            loader.postValue(false)
+        }.asLiveData())
     }
 }
