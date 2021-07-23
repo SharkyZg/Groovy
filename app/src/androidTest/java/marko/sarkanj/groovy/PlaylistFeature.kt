@@ -30,9 +30,6 @@ import org.junit.Rule
 
 class PlaylistFeature : BaseUITest(){
 
-    val mActivityRule = ActivityTestRule(MainActivity::class.java)
-        @Rule get
-
     @Test
     fun displayScreenTitle() {
         assertDisplayed("Playlists")
@@ -85,9 +82,8 @@ class PlaylistFeature : BaseUITest(){
     }
 
     @Test
-    fun navigateToDetailsScreen() {
-        onView(allOf(withId(R.id.playlist_image), isDescendantOfA(nthChildOf(withId(R.id.playlists_list), 0))))
-            .perform(click())
+    fun navigateToDetailsScreenTest() {
+        navigateToDetailsScreen()
 
         assertDisplayed(R.id.playlists_details_root)
     }
