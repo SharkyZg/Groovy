@@ -1,10 +1,11 @@
 package marko.sarkanj.groovy.details
 
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class PlaylistDetailsService @Inject constructor(){
-    fun fetchPlaylistDetails(id: String) {
-
+class PlaylistDetailsService @Inject constructor() {
+    suspend fun fetchPlaylistDetails(id: String) : Flow<Result<PlaylistDetails>> {
+        TODO("")
     }
 
 }

@@ -12,7 +12,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_playlist.view.*
 import kotlinx.android.synthetic.main.fragment_playlist_detail.*
 import kotlinx.android.synthetic.main.playlist_item.*
-import marko.sarkanj.groovy.PlaylistDetailFragmentArgs
 import marko.sarkanj.groovy.R
 import javax.inject.Inject
 
@@ -24,7 +23,7 @@ class PlaylistDetailsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: PlaylistDetailsViewModelFactory
 
-    val args: PlaylistDetailFragmentArgs by navArgs()
+    val args: PlaylistDetailsFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
