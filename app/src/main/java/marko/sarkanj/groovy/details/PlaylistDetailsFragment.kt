@@ -59,7 +59,7 @@ class PlaylistDetailsFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory).get(PlaylistDetailsViewModel::class.java)
 
     private fun setupUI(playlistDetails: Result<PlaylistDetails>) {
-        playlist_name.text = playlistDetails.getOrNull()!!.name
+        playlists_details_name.text = playlistDetails.getOrNull()!!.name
         playlists_details_details.text = playlistDetails.getOrNull()!!.details
     }
 

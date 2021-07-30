@@ -14,10 +14,13 @@
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="@color/design_default_color_primary"
+        tools:context=".details.PlaylistDetailsFragment"
+
         android:id="@+id/playlists_details_name"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:context=".details.PlaylistDetailsFragment"
         android:id="@+id/playlists_details_details"/>
 
 </LinearLayout>
