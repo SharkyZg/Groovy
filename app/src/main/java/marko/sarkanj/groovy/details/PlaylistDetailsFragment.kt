@@ -9,9 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_playlist.view.*
 import kotlinx.android.synthetic.main.fragment_playlist_detail.*
-import kotlinx.android.synthetic.main.playlist_item.*
 import marko.sarkanj.groovy.R
 import javax.inject.Inject
 
@@ -40,12 +38,22 @@ class PlaylistDetailsFragment : Fragment() {
 
         viewModel.getPlaylistDetails(id)
 
-        observeLiveData()
+        observeLoader()
+        observePlaylistDetails()
 
         return view
     }
 
-    private fun observeLiveData() {
+    private fun observeLoader() {
+        viewModel.loader.observe(this as LifecycleOwner, { loading ->
+            when (loading) {
+                true -> details_loader.visibility = View.VISIBLE
+                else -> details_loader.visibility = View.GONE
+            }
+        })
+    }
+
+    private fun observePlaylistDetails() {
         viewModel.playlistDetails.observe(this as LifecycleOwner) { playlistDetails ->
             if (playlistDetails.getOrNull() != null) {
                 setupUI(playlistDetails)

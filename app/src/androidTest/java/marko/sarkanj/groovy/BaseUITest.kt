@@ -8,8 +8,6 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import com.schibsted.spain.barista.assertion.BaristaVisibilityAssertions
-import marko.sarkanj.groovy.playlist.idlingResource
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher

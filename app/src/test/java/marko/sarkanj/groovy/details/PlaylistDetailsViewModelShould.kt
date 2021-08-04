@@ -8,6 +8,7 @@ import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runBlockingTest
 import marko.sarkanj.groovy.utils.BaseUnitTest
+import marko.sarkanj.groovy.utils.captureValues
 import marko.sarkanj.groovy.utils.getValueForTest
 import org.junit.Test
 import java.lang.RuntimeException
@@ -25,6 +26,8 @@ class PlaylistDetailsViewModelShould : BaseUnitTest() {
     @Test
     fun getPlaylistDetailsFromService() = runBlockingTest {
         mockSuccessfulCase()
+        viewModel.getPlaylistDetails(id)
+
 
         viewModel.playlistDetails.getValueForTest()
 
@@ -34,8 +37,35 @@ class PlaylistDetailsViewModelShould : BaseUnitTest() {
     @Test
     fun emitPlaylistDetailsFromService() = runBlockingTest {
         mockSuccessfulCase()
+        viewModel.getPlaylistDetails(id)
+
 
         assertEquals(expected, viewModel.playlistDetails.getValueForTest())
+    }
+
+    @Test
+    fun showLoaderWhileLoading() = runBlockingTest {
+        mockSuccessfulCase()
+
+
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetails(id)
+            viewModel.playlistDetails.getValueForTest()
+
+            assertEquals(true, values[0])
+        }
+    }
+
+    @Test
+    fun closeLoaderAfterPlaylistDetailsLoad() = runBlockingTest{
+        mockSuccessfulCase()
+
+        viewModel.loader.captureValues {
+            viewModel.getPlaylistDetails(id)
+            viewModel.playlistDetails.getValueForTest()
+
+            assertEquals(false, values.last())
+        }
     }
 
     @Test
@@ -65,6 +95,5 @@ class PlaylistDetailsViewModelShould : BaseUnitTest() {
         )
 
         viewModel = PlaylistDetailsViewModel(service)
-        viewModel.getPlaylistDetails(id)
     }
 }

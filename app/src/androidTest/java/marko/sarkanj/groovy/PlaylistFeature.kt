@@ -16,7 +16,7 @@ import com.schibsted.spain.barista.internal.matcher.DrawableMatcher.Companion.wi
 import marko.sarkanj.groovy.BaseUITest
 import marko.sarkanj.groovy.MainActivity
 import marko.sarkanj.groovy.R
-import marko.sarkanj.groovy.playlist.idlingResource
+import marko.sarkanj.groovy.idlingResource
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -65,7 +65,6 @@ class PlaylistFeature : BaseUITest(){
 
     @Test
     fun hidesLoader() {
-
         assertNotDisplayed(R.id.loader)
     }
 

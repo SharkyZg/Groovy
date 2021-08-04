@@ -13,7 +13,7 @@ class PlaylistDetailsService @Inject constructor(
         return flow{
             emit(Result.success(api.fetchPlaylistDetails(id)))
         }.catch {
-            emit(Result.failure(RuntimeException(this.toString())))
+            emit(Result.failure(RuntimeException("Something went wrong")))
         }
     }
 }

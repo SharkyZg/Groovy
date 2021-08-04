@@ -16,7 +16,7 @@ class PlaylistDetailsServiceShould : BaseUnitTest() {
     private val id = "100"
     private val api: PlaylistDetailsAPI = mock()
     private val playlistDetails: PlaylistDetails = mock()
-    private val exception = RuntimeException("backend problems")
+    private val exception = RuntimeException("backend/network problems")
 
     @Test
     fun fetchPlaylistDetailsFromAPI() = runBlockingTest {
@@ -47,6 +47,8 @@ class PlaylistDetailsServiceShould : BaseUnitTest() {
 
         service = PlaylistDetailsService(api)
     }
+
+
 
     private suspend fun mockSuccessfulCase() {
         whenever(api.fetchPlaylistDetails(id)).thenReturn(playlistDetails)
