@@ -82,7 +82,7 @@ class PlaylistFeature : BaseUITest(){
 
     @Test
     fun navigateToDetailsScreenTest() {
-        navigateToDetailsScreen()
+        navigateToDetailsScreen(0)
 
         assertDisplayed(R.id.playlists_details_root)
     }

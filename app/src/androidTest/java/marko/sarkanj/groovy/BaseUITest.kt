@@ -33,14 +33,14 @@ abstract class BaseUITest {
     val mActivityRule = ActivityTestRule(MainActivity::class.java)
         @Rule get
 
-    fun navigateToDetailsScreen() {
+    fun navigateToDetailsScreen(row: Int) {
         Espresso.onView(
             CoreMatchers.allOf(
                 ViewMatchers.withId(R.id.playlist_image),
                 ViewMatchers.isDescendantOfA(
                     nthChildOf(
                         ViewMatchers.withId(R.id.playlists_list),
-                        0
+                        row
                     )
                 )
             )
